@@ -27,6 +27,21 @@ The `.github/workflows/` directory holds three files that demonstrate different 
 - `ai-review-hardened-reference.yml` -- Anthropic's official `claude-code-security-review` action wrapped in a minimal workflow. Runs alongside the insecure one on every PR so you can compare output quality and see what a hardened real-world setup looks like. Read the source on GitHub. Do **not** copy this file verbatim into your Task 3 submission.
 - `ai-review-hardened.yml.TODO` -- the file you rename and implement yourself for Task 3. It must reuse the *patterns* from the reference action, not wrap it.
 
+### Branch-prefix convention for isolating demos
+
+Both workflows check `github.event.pull_request.head.ref` and skip themselves for each other's demo branches:
+
+- `demo-insecure/**` -> only `ai-review-insecure.yml` runs.
+- `demo-hardened/**` -> only `ai-review-hardened-reference.yml` runs.
+- Anything else (your submission branch, a typical working branch) -> **both** run side by side.
+
+Reference demo PRs already opened on the course repo:
+
+- **Insecure workflow output only:** <https://github.com/kse-bd8338bbe006/lecture10-ai-review-lab/pull/3>
+- **Hardened reference output only:** <https://github.com/kse-bd8338bbe006/lecture10-ai-review-lab/pull/4>
+
+Both PRs contain the same seeded path-traversal vulnerability (`/reports/<name>`) so you can read the two reviews side by side.
+
 ## Repo layout
 
 ```
