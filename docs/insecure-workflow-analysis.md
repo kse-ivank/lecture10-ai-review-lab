@@ -56,6 +56,14 @@ The model output is posted directly as a PR comment. Markdown rendered in a GitH
 
 Lecture slide category: **prompt injection, defense in depth**.
 
+## Flaw 10 -- arbitrary code execution from the PR head
+
+The workflow runs `pytest` against `sample-app/tests/` from the PR head checkout. Any PR author who edits a test file can execute arbitrary Python with `ANTHROPIC_API_KEY` in scope (Flaw 3), `GITHUB_TOKEN` with `write-all` (Flaw 2), and no timeout (Flaw 4). A real attacker would POST the raw secret to a webhook or use the token to push a backdoor to `main`.
+
+PR #5 in the course repo (`demo-exfil/fork-exploit` branch) demonstrates this concretely: the modified test prints a SHA-256 prefix of the API key to prove access without leaking the value.
+
+Lecture slide category: **privilege and sandboxing, supply chain**.
+
 ## How the flaws chain
 
 A motivated attacker opens a PR from a fork. The PR body contains:
