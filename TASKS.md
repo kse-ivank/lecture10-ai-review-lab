@@ -2,7 +2,7 @@
 
 Total: 7 points. Submit one PR into your fork that contains all four deliverables.
 
-## Task 1 -- Workflow analysis (2 points)
+## Task 1 -- Workflow analysis
 
 Create `submission/analysis.md` in your fork. For each of the nine flaws in `.github/workflows/ai-review-insecure.yml`, answer:
 
